@@ -5,9 +5,8 @@ import Slider from 'rc-slider'
 import { useState } from 'react'
 import Range from 'rc-slider'
 import 'rc-slider/assets/index.css'
-import { AnyTxtRecord } from 'dns'
 
-const AddingBar = () => {
+const AddingBar = (props : any) => {
     const [activityInput, setActivityInput] = useState();
     const [timeInput, setTimeInput] = useState(0);
 

@@ -2,10 +2,10 @@ import ActivityRow from "./ActivityRow";
 import Table from 'react-bootstrap/Table'
 const ActivityTable = (props : any) => {
     const rows : any = [];
-    // props.forEach((activity : any) => {
-        // rows.push(<ActivityRow activityName={activity.activityName} time={activity.time}/>);
-    // });
- 
+    props.data.forEach((activity : any) => {
+        rows.push(<ActivityRow name={activity.name} time={activity.time} />);
+    });
+    
     return (
         <Table> 
             <thead>         
@@ -14,7 +14,9 @@ const ActivityTable = (props : any) => {
                 <th>Time</th>
             </tr>
             </thead> 
-            <tbody>{rows}</tbody>
+            <tbody>
+                {rows}
+            </tbody>
              
         </Table>
     );

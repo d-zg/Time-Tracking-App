@@ -5,10 +5,14 @@ import {useState} from "react"
 
 
 const TimeTrackingTable = () => {
-    const data = useState([{activityName: 'Unaccounted', time: 1440}]); 
+    const [data, setData] = useState([{name: 'Unaccounted', time: 1440},]); 
+    // const onAdd = (value : any) => {
+    //     setData([...data, {name: value.name, time: value.time}]);
+    // }
     return(
         <div>
-            <ActivityTable props={data}/>
+            <ActivityTable data={data}/>
+            {/* <AddingBar onAdd={onAdd}/> */}
             <AddingBar />
         </div>
     ); 
