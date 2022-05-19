@@ -3,7 +3,7 @@ import Dropdown from 'react-bootstrap/Dropdown'
 import Button from 'react-bootstrap/Button'
 import Slider from 'rc-slider'
 import { useState } from 'react'
-import Range from 'rc-slider'
+import TooltipSlider, { handleRender } from './helpers/TooltipSlider';
 import 'rc-slider/assets/index.css'
 
 const AddingBar = (props : any) => {
@@ -18,6 +18,11 @@ const AddingBar = (props : any) => {
         setActivityInput(value);
         setValid(true); 
     }
+    const onClick = (value : any) => {
+        value.preventDefault();
+        props.onAdd({name: activityInput, time: timeInput});
+        setTimeInput(0);
+    }
 
     return(
         <div className="flexbox-container">
@@ -25,11 +30,11 @@ const AddingBar = (props : any) => {
                 <Dropdown.Item eventKey="Sleep">Sleep</Dropdown.Item>
                 <Dropdown.Item eventKey="Social">Social</Dropdown.Item>
             </DropdownButton>{' '}
-            <Slider value = {timeInput} min={0} max={1440} step={5} onChange={onSliderChange}/>{' '} 
+            <Slider value = {timeInput} min={0} max={1440} step={5} onChange={onSliderChange} handleRender={handleRender}/>{' '} 
             {/* <Button variant="primary" size="sm" onClick = {props.onAdd({name: activityInput, time: timeInput})}>
                 Add {(timeInput - timeInput%60)/60} hours and {timeInput%60} minutes of {activityInput}
             </Button> */}
-            {valid ? (<Button variant="primary" size="sm" onClick = {props.onAdd({name: activityInput, time: timeInput})}>
+            {valid ? (<Button variant="primary" size="sm" onClick = {onClick}>
                 Add {(timeInput - timeInput%60)/60} hours and {timeInput%60} minutes of {activityInput}
             </Button>) : null}
         </div> 

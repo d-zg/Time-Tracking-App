@@ -4,7 +4,7 @@ const ActivityTable = (props : any) => {
     const rows : any = [];
     var index = 0; 
     props.data.forEach((activity : any) => {
-        rows.push(<ActivityRow name={activity.name} time={activity.time} index={index} handleDelete={props.handleDelete}/>);
+        rows.push(<ActivityRow name={activity.name} time={activity.time} index={index} handleDelete={props.handleDelete} handleEdit={props.handleEdit}/>);
         index = index+1; 
     });
     
