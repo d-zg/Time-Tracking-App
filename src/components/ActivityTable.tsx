@@ -1,5 +1,6 @@
 import ActivityRow from "./ActivityRow";
-import Table from 'react-bootstrap/Table'
+import Table from 'react-bootstrap/Table';
+import { Container } from "react-bootstrap"; 
 const ActivityTable = (props : any) => {
     const rows : any = [];
     const totals : any = [];
@@ -29,6 +30,7 @@ const ActivityTable = (props : any) => {
     
     
     return (
+        <Container>
         <Table> 
             <thead>         
                 <tr> 
@@ -54,6 +56,7 @@ const ActivityTable = (props : any) => {
                 {totals}
             </tbody>
         </Table>
+        </Container>
     );
 }
 
