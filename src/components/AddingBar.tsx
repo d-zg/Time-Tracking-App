@@ -21,14 +21,13 @@ const AddingBar = (props : any) => {
     const onClick = (value : any) => {
         value.preventDefault();
         props.onAdd({name: activityInput, time: timeInput});
-        setTimeInput(0);
+        setTimeInput(25);
     }
 
     return(
         <div className="flexbox-container">
             <DropdownButton title={activityInput} id="dropdown-basic-button" onSelect = {onMenuSelect}>
-                <Dropdown.Item eventKey="Sleep">Sleep</Dropdown.Item>
-                <Dropdown.Item eventKey="Social">Social</Dropdown.Item>
+                {props.activities.map((value : any) => <Dropdown.Item eventKey={value}>{value}</Dropdown.Item>)}
             </DropdownButton>{' '}
             <Slider value = {timeInput} min={0} max={1440} step={5} onChange={onSliderChange} handleRender={handleRender}/>{' '} 
             {/* <Button variant="primary" size="sm" onClick = {props.onAdd({name: activityInput, time: timeInput})}>
