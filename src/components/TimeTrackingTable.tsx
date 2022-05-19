@@ -12,15 +12,13 @@ const TimeTrackingTable = () => {
             setData([...data, {name: value.name, time: value.time}]);
         }
     }
-    const handleEdit = (value : any) => (event : any) => {
-        event.preventDefault();
-        if (value.time !== 0) {
-            setData([...data, {name: value.name, time: value.time}]);
-        }
+    const handleDelete = (value : any) => {
+        console.log("Handling deletion at index " + value.index);
+        setData([...data.slice(0, value.index), ...data.slice(value.index+1)]);
     }
     return(
         <div>
-            <ActivityTable data={data}/>
+            <ActivityTable data={data} handleDelete={handleDelete}/>
             <AddingBar onAdd={onAdd}/>
         </div>
     ); 
