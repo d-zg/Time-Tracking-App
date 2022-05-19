@@ -2,6 +2,7 @@ import ActivityRow from "./ActivityRow";
 import Table from 'react-bootstrap/Table'
 const ActivityTable = (props : any) => {
     const rows : any = [];
+
     props.data.forEach((activity : any) => {
         rows.push(<ActivityRow name={activity.name} time={activity.time} />);
     });
