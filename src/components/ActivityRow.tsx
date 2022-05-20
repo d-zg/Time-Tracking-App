@@ -3,7 +3,7 @@ import Dropdown from 'react-bootstrap/Dropdown'
 import { useState } from 'react'
 import Slider from 'rc-slider'
 import 'rc-slider/assets/index.css'
-import TooltipSlider, { handleRender } from './helpers/TooltipSlider';
+import TooltipSlider, { handleRender } from './helpers/TooltipSlider'
 
 
 const ActivityRow = (props : any) => {
@@ -35,7 +35,7 @@ const ActivityRow = (props : any) => {
                     Edit
                     <Slider value = {timeInput} min={0} max={1440} step={5} onChange={onSliderChange} handleRender = {handleRender}/></Dropdown.Item>
                 <Dropdown.Item eventKey="Delete">Delete</Dropdown.Item>
-            </DropdownButton>{' '}
+            </DropdownButton>
         </tr>
     );
 }
