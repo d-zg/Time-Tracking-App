@@ -1,4 +1,4 @@
-const config               = require('./dbConfig'),
+const config               = require('./dbConfig'), //TODO: switch to mongoDB
         sql                = require('mssql')
 
 const getActivityTimes = async() => {
@@ -16,7 +16,7 @@ const getActivityTimes = async() => {
 const getDay = async(activityTimes) => {
     try {
         pool = await sql.connect(config);
-        dailyActivities = pool.request().query(`SELECT * from ActivityTimes WHERE activityDate = '${activityTimes.date}`);
+        dailyActivities = pool.request().query(`SELECT * from ActivityTimes WHERE activityDate = '${activityTimes.date}'`);
         console.log(dailyActivities);
         return dailyActivities;
     }
@@ -51,5 +51,6 @@ const uploadDayTimes = async(activityTimes) => {
 }
 module.exports = {
     getActivityTimes,
-    uploadDayTimes
+    uploadDayTimes,
+    getDay
 } 
