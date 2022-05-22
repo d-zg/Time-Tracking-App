@@ -1,9 +1,9 @@
-import * as React from 'react';
-import 'rc-tooltip/assets/bootstrap.css';
-import Slider from 'rc-slider';
-import type { SliderProps } from 'rc-slider';
-import raf from 'rc-util/lib/raf';
-import Tooltip from 'rc-tooltip';
+import * as React from 'react'
+import 'rc-tooltip/assets/bootstrap.css'
+import Slider from 'rc-slider'
+import type { SliderProps } from 'rc-slider'
+import raf from 'rc-util/lib/raf'
+import Tooltip from 'rc-tooltip'
 
 const HandleTooltip = (props: {
   value: number;
@@ -11,30 +11,30 @@ const HandleTooltip = (props: {
   visible: boolean;
   tipFormatter?: (value: number) => React.ReactNode;
 }) => {
-  const { value, children, visible, tipFormatter = (val) => `${(val - val%60)/60} hours and ${val%60} minutes`, ...restProps } = props;
+  const { value, children, visible, tipFormatter = (val) => `${(val - val % 60) / 60} hours and ${val % 60} minutes`, ...restProps } = props
 
-  const tooltipRef = React.useRef<any>();
-  const rafRef = React.useRef<number | null>(null);
+  const tooltipRef = React.useRef<any>()
+  const rafRef = React.useRef<number | null>(null)
 
-  function cancelKeepAlign() {
-    raf.cancel(rafRef.current!);
+  function cancelKeepAlign () {
+    raf.cancel(rafRef.current!)
   }
 
-  function keepAlign() {
+  function keepAlign () {
     rafRef.current = raf(() => {
-      tooltipRef.current?.forcePopupAlign();
-    });
+      tooltipRef.current?.forcePopupAlign()
+    })
   }
 
   React.useEffect(() => {
     if (visible) {
-      keepAlign();
+      keepAlign()
     } else {
-      cancelKeepAlign();
+      cancelKeepAlign()
     }
 
-    return cancelKeepAlign;
-  }, [value, visible]);
+    return cancelKeepAlign
+  }, [value, visible])
 
   return (
     <Tooltip
@@ -47,16 +47,16 @@ const HandleTooltip = (props: {
     >
       {children}
     </Tooltip>
-  );
-};
+  )
+}
 
 export const handleRender: SliderProps['handleRender'] = (node, props) => {
   return (
     <HandleTooltip value={props.value} visible={props.dragging}>
       {node}
     </HandleTooltip>
-  );
-};
+  )
+}
 
 const TooltipSlider = ({
   tipFormatter,
@@ -73,10 +73,10 @@ const TooltipSlider = ({
       >
         {node}
       </HandleTooltip>
-    );
-  };
+    )
+  }
 
-  return <Slider {...props} handleRender={tipHandleRender} />;
-};
+  return <Slider {...props} handleRender={tipHandleRender} />
+}
 
-export default TooltipSlider;
+export default TooltipSlider

@@ -1,35 +1,33 @@
 import DropdownButton from 'react-bootstrap/DropdownButton'
 import Dropdown from 'react-bootstrap/Dropdown'
-import { useState } from 'react'
+import React, { useState } from 'react'
 import Slider from 'rc-slider'
 import 'rc-slider/assets/index.css'
-import TooltipSlider, { handleRender } from './helpers/TooltipSlider'
-
+import { handleRender } from './helpers/TooltipSlider'
 
 const ActivityRow = (props : any) => {
-    const activityName = props.name;
-    const time = props.time; 
-    const index = props.index; 
+  const activityName = props.name
+  const time = props.time
+  const index = props.index
 
-    const [timeInput, setTimeInput] = useState(time);
-    const onSliderChange = (value : any) => {
-        setTimeInput(value);
-    }
+  const [timeInput, setTimeInput] = useState(time)
+  const onSliderChange = (value : any) => {
+    setTimeInput(value)
+  }
 
-    const handleChange = (event : any) => {
-        if (event === "Edit") {
-            props.handleEdit({index: index, time: timeInput});
-            console.log("updated activity at index " + index + " with new time " + timeInput);
-        }
-        else if (event === "Delete") {
-            props.handleDelete({index: index}); 
-            console.log("deleted activity at index " + index);
-        }
+  const handleChange = (event : any) => {
+    if (event === 'Edit') {
+      props.handleEdit({ index, time: timeInput })
+      console.log('updated activity at index ' + index + ' with new time ' + timeInput)
+    } else if (event === 'Delete') {
+      props.handleDelete({ index })
+      console.log('deleted activity at index ' + index)
     }
-    return(
+  }
+  return (
         <tr>
             <td>{activityName}</td>
-            <td>{(time - time%60)/60} hours and {time%60} minutes</td>
+            <td>{(time - time % 60) / 60} hours and {time % 60} minutes</td>
             <DropdownButton title={''} id="dropdown-basic-button" size="sm" onSelect = {handleChange}>
                 <Dropdown.Item eventKey="Edit">
                     Edit
@@ -37,7 +35,7 @@ const ActivityRow = (props : any) => {
                 <Dropdown.Item eventKey="Delete">Delete</Dropdown.Item>
             </DropdownButton>
         </tr>
-    );
+  )
 }
 
-export default ActivityRow; 
+export default ActivityRow

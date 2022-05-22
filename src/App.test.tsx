@@ -1,9 +1,19 @@
 import React from 'react';
-import { render, screen } from '@testing-library/react';
 import App from './App';
 
-test('renders learn react link', () => {
-  render(<App />);
-  const linkElement = screen.getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
-});
+
+
+const getData = async (url : any, data : any) => {
+  const newData = await fetch(url, {
+      method: 'GET',
+      headers: {
+          'content-type': 'application/json',
+          'Accept': 'application/json' 
+      },
+      body: data
+  })
+  .then(res => res.json());
+  console.log(newData); 
+}
+
+getData('/api', {date:'2022-05-24'});
