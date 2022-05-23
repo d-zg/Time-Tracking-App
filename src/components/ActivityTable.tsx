@@ -3,8 +3,9 @@ import Table from 'react-bootstrap/Table'
 import { Container } from 'react-bootstrap'
 // eslint-disable-next-line no-unused-vars
 import React, { useEffect } from 'react'
-
+// import useCollapse from 'react-collapsed'
 import Day from '../api/day'
+import Collapsible from 'react-collapsible'
 const ActivityTable = (props : any) => { // TODO: rewrite and refactor this entire thing it's pretty gross
   const rows : any = []
   const totals : any = []
@@ -77,6 +78,9 @@ const ActivityTable = (props : any) => { // TODO: rewrite and refactor this enti
             <tbody>
                 {rows}
             </tbody>
+        </Table>
+        <Collapsible trigger="Click to collapse Totals" open={true}>
+        <Table>
             <thead>
                 <tr>
                     <th colSpan={2}>New Totals</th>
@@ -106,8 +110,9 @@ const ActivityTable = (props : any) => { // TODO: rewrite and refactor this enti
                 {totals}
             </tbody>
         </Table>
+        <button onClick={handleUpdate}>Push totals to server</button>
+        </Collapsible>
         </Container>
-        <button onClick={handleUpdate}>Update Server Totals</button>
     </div>
   )
 }

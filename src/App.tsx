@@ -41,7 +41,7 @@ function App () {
   return (
     <div className="App">
       <h1>{date}</h1>
-      <TimeTrackingTable totals={data} update={updateData}/>
+      <TimeTrackingTable totals={data} update={updateData} get={getData}/>
       <button onClick={() => (getData('/api', today).then(val => setData(val)))}>Get totals</button>
     </div>
   )

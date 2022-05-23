@@ -4,8 +4,7 @@ import React, { useState } from 'react'
 
 const TimeTrackingTable = (props : any) => {
   const activities = ['Classwork', 'Research', 'Exercise', 'Reading', 'Planning', 'Reflection', 'Learning', 'Meditate', 'Gratitude', 'Media', 'Social', 'Sleep'] // make this customizable/grab it from a server
-  const [data, setData] = useState([{ name: 'Classwork', time: 0 }]) // TODO: put these data structures in a database server
-  // const [data, setData] = useState(props.totals)
+  const [data, setData] = useState([{ name: 'Classwork', time: 0 }])
   const onAdd = (value : any) => {
     if (value.time !== 0) {
       setData([...data, { name: value.name, time: value.time }])
