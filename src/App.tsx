@@ -7,7 +7,7 @@ function App () {
   const current = new Date()
   const date = `${current.getDate()}/${current.getMonth() + 1}/${current.getFullYear()}`
 
-  const today = new Day(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '2022-05-21')
+  const today = new Day(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, current)
   const getData = async (url : any, data : any) => {
     console.log('sending request')
     console.log(data.date)
@@ -22,17 +22,27 @@ function App () {
     }).then(res => res.json(), res => console.log('request rejected')).then(data => data.result[0])// .then(data => Object.entries(data))
     console.log('Got times')
     console.log(Object.entries(newData))
-    setData(Object.entries(newData))
+    // setData(Object.entries(newData))
     return newData
   }
-  const [data, setData] = useState(['unaccounted', {}])
+  const updateData = async (url : any, data : any) => {
+    await fetch(url, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(data)
+    })
+  }
+  const [data, setData] = useState(['Not updated, grab totals from server', {}])
   //  const data : any = [];  fda
-
+  console.log('loaded')
+  console.log(data)
   return (
     <div className="App">
       <h1>{date}</h1>
-      <TimeTrackingTable totals={data}/>
-      <button onClick={() => (getData('/api', today).then(val => setData(val)))}>click me</button>
+      <TimeTrackingTable totals={data} update={updateData}/>
+      <button onClick={() => (getData('/api', today).then(val => setData(val)))}>Get totals</button>
     </div>
   )
 }
