@@ -9,8 +9,6 @@ import Collapsible from 'react-collapsible'
 const ActivityTable = (props : any) => { // TODO: rewrite and refactor this entire thing it's pretty gross
   const rows : any = []
   const totals : any = []
-  console.log('inactivitytable')
-  console.log(Object.entries(props.totals))
   const newTotals : any = []
   const map = new Map([
     ['Classwork', 0],
@@ -57,10 +55,13 @@ const ActivityTable = (props : any) => { // TODO: rewrite and refactor this enti
   }
   totals.pop()
 
-  const handleUpdate = (value : any) => {
+  const handleUpdate = async (value : any) => {
     value.preventDefault()
-    props.update('/task/update', new Day(map.get('Classwork'), map.get('Research'), map.get('Exercise'), map.get('Reading'), map.get('Planning'), map.get('Reflection'),
-      map.get('Learning'), map.get('Meditation'), map.get('Gratitude'), map.get('Media'), map.get('Social'), map.get('Sleep'), new Date()))
+    let yourDate = new Date()
+    const offset = yourDate.getTimezoneOffset()
+    yourDate = new Date(yourDate.getTime() - (offset * 60 * 1000))
+    await props.update('/task/update', new Day(map.get('Classwork'), map.get('Research'), map.get('Exercise'), map.get('Reading'), map.get('Planning'), map.get('Reflection'),
+      map.get('Learning'), map.get('Meditation'), map.get('Gratitude'), map.get('Media'), map.get('Social'), map.get('Sleep'), yourDate.toISOString().split('T')[0]))
   }
 
   // useEffect
@@ -110,7 +111,8 @@ const ActivityTable = (props : any) => { // TODO: rewrite and refactor this enti
                 {totals}
             </tbody>
         </Table>
-        <button onClick={handleUpdate}>Push totals to server</button>
+        <button onClick={handleUpdate}>Push totals to server</button>{' '}
+        <button onClick={props.get}>Get totals</button>
         </Collapsible>
         </Container>
     </div>
