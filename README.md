@@ -1,3 +1,6 @@
+https://d-zg.github.io/Time-Tracking-App/ 
+Middleware server is not deployed, can't save or update your daily times
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
