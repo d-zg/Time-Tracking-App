@@ -1,5 +1,7 @@
-https://d-zg.github.io/Time-Tracking-App/ 
-Middleware server is not deployed, can't save or update your daily times
+static version: https://d-zg.github.io/Time-Tracking-App/ 
+Middleware server is not deployed, can't save or update your daily times since GH pages is a static hoster.
+
+If you want to use it locally, use npm run server to start the middleware server and npm start 
 
 # Getting Started with Create React App
 
