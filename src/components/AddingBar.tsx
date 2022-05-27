@@ -6,6 +6,7 @@ import Slider from 'rc-slider'
 import React, { useState } from 'react'
 import { handleRender } from './helpers/TooltipSlider'
 import 'rc-slider/assets/index.css'
+import StopWatch from './AddingStopwatch'
 
 const AddingBar = (props : any) => {
   const [activityInput, setActivityInput] = useState("Add something you've done")
@@ -26,6 +27,7 @@ const AddingBar = (props : any) => {
   }
 
   return (
+        <div>
         <div className="flexbox-container">
             <DropdownButton title={activityInput} id="dropdown-basic-button" onSelect = {onMenuSelect}>
                 {props.activities.map((value : any) => <Dropdown.Item eventKey={value}>{value}</Dropdown.Item>)}
@@ -36,9 +38,11 @@ const AddingBar = (props : any) => {
             </Button> */}
             {valid
               ? (<Button variant="primary" size="sm" onClick = {onClick}>
-                Add {(timeInput - timeInput % 60) / 60} hours and {timeInput % 60} minutes of {activityInput}
+                Add {Math.floor((timeInput - timeInput % 60) / 60)} hours and {Math.floor(timeInput % 60)} minutes of {activityInput}
             </Button>)
               : null}
+        </div>
+        <StopWatch timeInput={timeInput} setTimeInput={setTimeInput} />
         </div>
   )
 }

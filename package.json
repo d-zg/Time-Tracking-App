@@ -1,6 +1,7 @@
 {
   "name": "time-tracker-app",
   "version": "0.1.0",
+  "homepage" : "https://d-zg.github.io/Time-Tracking-App",
   "private": true,
   "proxy": "http://localhost:5000",
   "dependencies": {
@@ -30,6 +31,8 @@
   },
   "scripts": {
     "lint": "eslint .",
+    "predeploy" : "npm run build && npm run server",
+    "deploy": "gh-pages -d build",
     "start": "react-scripts start",
     "server": "nodemon src/api/server.js",
     "build": "react-scripts build",
@@ -62,6 +65,7 @@
     "eslint-plugin-import": "^2.26.0",
     "eslint-plugin-n": "^15.2.0",
     "eslint-plugin-promise": "^6.0.0",
-    "eslint-plugin-react": "^7.30.0"
+    "eslint-plugin-react": "^7.30.0",
+    "gh-pages": "^4.0.0"
   }
 }
